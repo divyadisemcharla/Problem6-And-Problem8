@@ -1,0 +1,187 @@
+{
+	"info": {
+		"_postman_id": "bae994a1-6b9e-42db-970e-62ca7d37eb01",
+		"name": "SDET",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "29784891"
+	},
+	"item": [
+		{
+			"name": "register success",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"eve.holt@reqres.in\",\r\n    \"password\": \"pistol\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://reqres.in/api/register"
+			},
+			"response": []
+		},
+		{
+			"name": "register unsuccessful",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"  pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"sydney@fife\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://reqres.in/api/register"
+			},
+			"response": []
+		},
+		{
+			"name": "Login successful",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"pm.test(\"Response status code is 200\", function () {",
+							"  pm.expect(pm.response.code).to.equal(200);",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"eve.holt@reqres.in\",\r\n    \"password\": \"cityslicka\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://reqres.in/api/login"
+			},
+			"response": []
+		},
+		{
+			"name": "Login unsuccessful",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"  pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"peter@klaven\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://reqres.in/api/login"
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"morpheus\",\r\n    \"job\": \"leader\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://reqres.in/api/users"
+			},
+			"response": []
+		}
+	]
+}
