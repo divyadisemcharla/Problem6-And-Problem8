@@ -1,0 +1,86 @@
+Groovy Script
+//POST Create
+def postmanPost = new URL('https://reqres.in/api/users')
+def postConnection = postmanPost.openConnection()
+postConnection.requestMethod = 'POST'
+def form = "name: morpheus,job: leader"
+postConnection.doOutput = true
+def text
+postConnection.with {
+    outputStream.withWriter { outputStreamWriter ->
+        outputStreamWriter << form
+    }
+    text = content.text
+}
+assert postConnection.responseCode == 201
+JsonSlurper jsonSlurper = new JsonSlurper()
+assert jsonSlurper.parseText(text)?.json.name == "morepheus"
+
+//POST Register Success
+def postmanPost = new URL('https://reqres.in/api/register')
+def postConnection = postmanPost.openConnection()
+postConnection.requestMethod = 'POST'
+def form = "email: eve.holt@reqres.in,password: pistol"
+postConnection.doOutput = true
+def text
+postConnection.with {
+    outputStream.withWriter { outputStreamWriter ->
+        outputStreamWriter << form
+    }
+    text = content.text
+}
+assert postConnection.responseCode == 200
+JsonSlurper jsonSlurper = new JsonSlurper()
+assert jsonSlurper.parseText(text)?.json.email == "eve.holt@reqres.in"
+
+//POST Register Unsuccessful
+def postmanPost = new URL('https://reqres.in/api/register')
+def postConnection = postmanPost.openConnection()
+postConnection.requestMethod = 'POST'
+def form = "email: eve.holt@reqres.in"
+postConnection.doOutput = true
+def text
+postConnection.with {
+    outputStream.withWriter { outputStreamWriter ->
+        outputStreamWriter << form
+    }
+    text = content.text
+}
+assert postConnection.responseCode == 400
+JsonSlurper jsonSlurper = new JsonSlurper()
+assert jsonSlurper.parseText(text)?.json.email == "eve.holt@reqres.in"
+
+//POST Login Successful
+def postmanPost = new URL('https://reqres.in/api/login')
+def postConnection = postmanPost.openConnection()
+postConnection.requestMethod = 'POST'
+def form = "email: eve.holt@reqres.in, password:cityslicka"
+postConnection.doOutput = true
+def text
+postConnection.with {
+    outputStream.withWriter { outputStreamWriter ->
+        outputStreamWriter << form
+    }
+    text = content.text
+}
+assert postConnection.responseCode == 200
+JsonSlurper jsonSlurper = new JsonSlurper()
+assert jsonSlurper.parseText(text)?.json.email == "eve.holt@reqres.in"
+
+//POST Login Unsuccessful
+def postmanPost = new URL('https://reqres.in/api/login')
+def postConnection = postmanPost.openConnection()
+postConnection.requestMethod = 'POST'
+def form = "email: peter@klaven"
+postConnection.doOutput = true
+def text
+postConnection.with {
+    outputStream.withWriter { outputStreamWriter ->
+        outputStreamWriter << form
+    }
+    text = content.text
+}
+assert postConnection.responseCode == 400
+JsonSlurper jsonSlurper = new JsonSlurper()
+assert jsonSlurper.parseText(text)?.json.email == "eve.holt@reqres.in"
+
